@@ -37,11 +37,12 @@ export const LanguagePad = () => {
         language={sourceLanguage}
       />
 
-      <HiOutlineSwitchHorizontal
-        className="cursor-pointer w-full"
-        onClick={switchLanguages}
-        size="17px"
-      />
+      <div className="w-full p-4" onClick={switchLanguages}>
+        <HiOutlineSwitchHorizontal
+          className="cursor-pointer w-full"
+          size="20px"
+        />
+      </div>
 
       <LanguagePadBox
         handleClick={handleTargetClick}

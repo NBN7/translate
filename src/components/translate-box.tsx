@@ -12,16 +12,18 @@ export const TranslateBox = memo(() => {
 
   const [wordCounter, setWordCounter] = useState(0);
 
-  // useEffect(() => {
-  //   if (text.length === 0) {
-  //     setTranslatedText(null);
-  //   }
-  // }, [text]);
+  useEffect(() => {
+    if (text.length === 0) {
+      setTranslatedText(null);
+    }
+  }, [text]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setWordCounter(e.target.value.length);
     setText(e.target.value);
+  };
 
+  const handleClick = () => {
     translateText(text, targetLanguage, sourceLanguage, setTranslatedText);
   };
 
@@ -56,6 +58,15 @@ export const TranslateBox = memo(() => {
           <p>{wordCounter}/5000</p>
         </div>
       </section>
+
+      <div className="flex w-full items-center justify-center mt-4">
+        <button
+          onClick={handleClick}
+          className="w-full p-4 bg-[#27272A] rounded-md hover:text-blue-600"
+        >
+          translate
+        </button>
+      </div>
     </>
   );
 });
