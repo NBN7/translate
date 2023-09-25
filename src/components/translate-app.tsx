@@ -7,23 +7,27 @@ import { LanguagePad } from "./language-pad";
 import { TranslateBox } from "./translate-box";
 import { TranslatedBox } from "./translated-box";
 const LanguageSelector = lazy(() => import("./language-selector"));
+import { Footer } from "./footer";
 
 export const TranslateApp = () => {
   return (
-    <main className="dark flex justify-center w-full h-screen p-4 overflow-hidden">
-      <TranslateContextProvider>
-        <LanguageSelectorContextProvider>
-          <div className="md:w-[400px] w-full">
-            <LanguagePad />
-            <TranslateBox />
-            <TranslatedBox />
-          </div>
+    <>
+      <main className="dark flex justify-center w-full h-screen p-4 overflow-hidden">
+        <TranslateContextProvider>
+          <LanguageSelectorContextProvider>
+            <div className="md:w-[400px] w-full">
+              <LanguagePad />
+              <TranslateBox />
+              <TranslatedBox />
+            </div>
 
-          <Suspense>
-            <LanguageSelector />
-          </Suspense>
-        </LanguageSelectorContextProvider>
-      </TranslateContextProvider>
-    </main>
+            <Suspense>
+              <LanguageSelector />
+            </Suspense>
+          </LanguageSelectorContextProvider>
+        </TranslateContextProvider>
+      </main>
+      <Footer />
+    </>
   );
 };
