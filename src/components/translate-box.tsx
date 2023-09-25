@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, memo } from "react";
-import { useLanguageContext } from "../context/language-context";
+import { useTranslateContext } from "../context/translate-context";
 
 import { Textarea } from "@nextui-org/react";
 import { IoClose } from "react-icons/io5";
@@ -8,7 +8,7 @@ import { translateText } from "../utils/translateText";
 
 export const TranslateBox = memo(() => {
   const { sourceLanguage, targetLanguage, text, setText, setTranslatedText } =
-    useLanguageContext();
+    useTranslateContext();
 
   const [wordCounter, setWordCounter] = useState(0);
 
@@ -36,7 +36,7 @@ export const TranslateBox = memo(() => {
             maxLength={5000}
             value={text}
           />
-          <IoClose onClick={handleReset} className="text-xl" />
+          <IoClose size="20px" onClick={handleReset} className="cursor-pointer" />
         </div>
 
         <div className="flex justify-end text-sm text-[#A1A1AA]">

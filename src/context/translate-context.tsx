@@ -1,10 +1,13 @@
 import { createContext, useContext, useState } from "react";
+import { LANGUAGE_TYPE } from "../constants/languageType";
 
-type LanguageContextProviderProps = {
+type TranslateContextProviderProps = {
   children: React.ReactNode;
 };
 
-type LanguageContext = {
+type LanguageType = typeof LANGUAGE_TYPE.SOURCE | typeof LANGUAGE_TYPE.TARGET;
+
+type TranslateContext = {
   sourceLanguage: string;
   setSourceLanguage: React.Dispatch<React.SetStateAction<string>>;
 
@@ -16,20 +19,28 @@ type LanguageContext = {
 
   translatedText: string | null;
   setTranslatedText: React.Dispatch<React.SetStateAction<string | null>>;
-};
-const LanguageContext = createContext<LanguageContext | null>(null);
 
-export const LanguageContextProvider = ({
+  languageType: LanguageType;
+  setLanguageType: React.Dispatch<React.SetStateAction<LanguageType>>;
+};
+
+const TranslateContext = createContext<TranslateContext | null>(null);
+
+export const TranslateContextProvider = ({
   children,
-}: LanguageContextProviderProps) => {
+}: TranslateContextProviderProps) => {
   const [sourceLanguage, setSourceLanguage] = useState<string>("en");
   const [targetLanguage, setTargetLanguage] = useState<string>("es");
 
   const [text, setText] = useState<string>("");
   const [translatedText, setTranslatedText] = useState<string | null>(null);
 
+  const [languageType, setLanguageType] = useState<LanguageType>(
+    LANGUAGE_TYPE.SOURCE
+  );
+
   return (
-    <LanguageContext.Provider
+    <TranslateContext.Provider
       value={{
         sourceLanguage,
         setSourceLanguage,
@@ -39,15 +50,17 @@ export const LanguageContextProvider = ({
         setText,
         translatedText,
         setTranslatedText,
+        languageType,
+        setLanguageType,
       }}
     >
       {children}
-    </LanguageContext.Provider>
+    </TranslateContext.Provider>
   );
 };
 
-export const useLanguageContext = () => {
-  const context = useContext(LanguageContext);
+export const useTranslateContext = () => {
+  const context = useContext(TranslateContext);
   if (!context) {
     throw new Error(
       "useLanguageContext must be used within a LanguageContextProvider"

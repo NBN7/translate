@@ -1,10 +1,14 @@
-import { useLanguageContext } from "../context/language-context";
+import { useTranslateContext } from "../context/translate-context";
 
 export const TranslatedBox = () => {
-  const { translatedText } = useLanguageContext();
+  const { translatedText } = useTranslateContext();
   return (
-    <section className="p-4 mt-4">
-      {translatedText && <h2 className="text-blue-600">{translatedText}</h2>}
-    </section>
+    <>
+      {translatedText && (
+        <section className="p-4 mt-4">
+          <h2 className="text-blue-600">{translatedText}</h2>
+        </section>
+      )}
+    </>
   );
 };
