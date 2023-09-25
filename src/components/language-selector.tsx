@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { useTranslateContext } from "../context/translate-context";
 import { useLanguageSelectorContext } from "../context/language-selector-context";
 
@@ -6,7 +8,7 @@ import { ChangeEvent } from "react";
 
 import { IoClose } from "react-icons/io5";
 
-export const LanguageSelector = () => {
+const LanguageSelector = memo(() => {
   const { setSourceLanguage, setTargetLanguage, languageType } =
     useTranslateContext();
   const { isOpen, setIsOpen, languages } = useLanguageSelectorContext();
@@ -55,4 +57,6 @@ export const LanguageSelector = () => {
       )}
     </>
   );
-};
+});
+
+export default LanguageSelector;
