@@ -10,7 +10,7 @@ const LanguageSelector = lazy(() => import("./language-selector"));
 
 export const TranslateApp = () => {
   return (
-    <main className="flex justify-center w-full h-screen p-4 dark overflow-hidden">
+    <main className="dark flex justify-center w-full h-screen p-4 overflow-hidden">
       <TranslateContextProvider>
         <LanguageSelectorContextProvider>
           <div className="md:w-[400px] w-full">
@@ -19,7 +19,7 @@ export const TranslateApp = () => {
             <TranslatedBox />
           </div>
 
-          <Suspense fallback={<div>Loading</div>}>
+          <Suspense>
             <LanguageSelector />
           </Suspense>
         </LanguageSelectorContextProvider>

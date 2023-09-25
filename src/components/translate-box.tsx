@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, memo } from "react";
+import { ChangeEvent, useState, useEffect, memo } from "react";
 import { useTranslateContext } from "../context/translate-context";
 
 import { Textarea } from "@nextui-org/react";
@@ -12,14 +12,23 @@ export const TranslateBox = memo(() => {
 
   const [wordCounter, setWordCounter] = useState(0);
 
+  // useEffect(() => {
+  //   if (text.length === 0) {
+  //     setTranslatedText(null);
+  //   }
+  // }, [text]);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setWordCounter(e.target.value.length);
     setText(e.target.value);
+
+    translateText(text, targetLanguage, sourceLanguage, setTranslatedText);
   };
 
   const handleReset = () => {
     setText("");
     setWordCounter(0);
+    setTranslatedText(null);
   };
 
   return (
@@ -36,22 +45,17 @@ export const TranslateBox = memo(() => {
             maxLength={5000}
             value={text}
           />
-          <IoClose size="20px" onClick={handleReset} className="cursor-pointer" />
+          <IoClose
+            size="20px"
+            onClick={handleReset}
+            className="cursor-pointer"
+          />
         </div>
 
         <div className="flex justify-end text-sm text-[#A1A1AA]">
           <p>{wordCounter}/5000</p>
         </div>
       </section>
-
-      <button
-        onClick={() =>
-          translateText(text, targetLanguage, sourceLanguage, setTranslatedText)
-        }
-        className="w-full p-4 mt-2 rounded-xl"
-      >
-        translate
-      </button>
     </>
   );
 });
