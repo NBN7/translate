@@ -1,4 +1,4 @@
-export const useLanguages = async () => {
+export const fetchLanguages = async () => {
   const url =
     "https://google-translate1.p.rapidapi.com/language/translate/v2/languages";
   const options = {

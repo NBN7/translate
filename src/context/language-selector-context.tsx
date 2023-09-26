@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useLanguages } from "../hooks/useLanguages";
+import { fetchLanguages } from "../utils/fetchLanguages";
 
 type LanguageSelectorContextProviderProps = {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ export const LanguageSelectorContextProvider = ({
 
   useEffect(() => {
     const getLanguages = async () => {
-      const response = await useLanguages();
+      const response = await fetchLanguages();
       const data = response.data.languages;
       data.forEach((language: any) =>
         setLanguages((prev) => [...prev, { language: language.language }])
