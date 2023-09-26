@@ -45,6 +45,7 @@ export const TranslateBox = memo(() => {
           <Textarea
             autoCorrect="off"
             autoComplete="off"
+            autoFocus={false}
             minRows={1}
             placeholder="type to translate"
             onChange={handleChange}
