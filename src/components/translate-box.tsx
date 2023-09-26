@@ -13,7 +13,7 @@ export const TranslateBox = memo(() => {
   const [wordCounter, setWordCounter] = useState(0);
 
   useEffect(() => {
-    if (text.length === 0) {
+    if (text?.length === 0) {
       setTranslatedText(null);
     }
   }, [text]);
@@ -24,7 +24,12 @@ export const TranslateBox = memo(() => {
   };
 
   const handleClick = () => {
-    translateText(text, targetLanguage, sourceLanguage, setTranslatedText);
+    translateText(
+      text ? text : "",
+      targetLanguage,
+      sourceLanguage,
+      setTranslatedText
+    );
   };
 
   const handleReset = () => {
@@ -45,7 +50,7 @@ export const TranslateBox = memo(() => {
             onChange={handleChange}
             type="text"
             maxLength={5000}
-            value={text}
+            value={text ? text : ""}
           />
           <IoClose
             size="20px"

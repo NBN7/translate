@@ -14,8 +14,8 @@ type TranslateContext = {
   targetLanguage: string;
   setTargetLanguage: React.Dispatch<React.SetStateAction<string>>;
 
-  text: string;
-  setText: React.Dispatch<React.SetStateAction<string>>;
+  text: string | null;
+  setText: React.Dispatch<React.SetStateAction<string | null>>;
 
   translatedText: string | null;
   setTranslatedText: React.Dispatch<React.SetStateAction<string | null>>;
@@ -32,7 +32,7 @@ export const TranslateContextProvider = ({
   const [sourceLanguage, setSourceLanguage] = useState<string>("en");
   const [targetLanguage, setTargetLanguage] = useState<string>("es");
 
-  const [text, setText] = useState<string>("");
+  const [text, setText] = useState<string | null>(null);
   const [translatedText, setTranslatedText] = useState<string | null>(null);
 
   const [languageType, setLanguageType] = useState<LanguageType>(

@@ -12,6 +12,10 @@ export const LanguagePad = () => {
     targetLanguage,
     setTargetLanguage,
     setLanguageType,
+    text,
+    setText,
+    translatedText,
+    setTranslatedText,
   } = useTranslateContext();
 
   const { setIsOpen } = useLanguageSelectorContext();
@@ -19,6 +23,9 @@ export const LanguagePad = () => {
   const switchLanguages = () => {
     setSourceLanguage(targetLanguage);
     setTargetLanguage(sourceLanguage);
+
+    setText(translatedText);
+    setTranslatedText(text);
   };
 
   const handleSourceClick = () => {
