@@ -1,9 +1,11 @@
 import { BiLogoLinkedinSquare, BiLogoGithub } from "react-icons/bi";
 
 export const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="flex flex-col items-center justify-center h-[150px] border-t-2 border-[#27272A] p-6 gap-4">
-      <span>©2023 Ignacio Biran All rights reserved</span>
+      <span>©{year} Ignacio Biran All rights reserved</span>
       <div className="flex gap-4">
         <a
           className="hover:text-blue-600 transition-all duration-200"

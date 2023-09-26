@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useTranslateContext } from "../context/translate-context";
@@ -14,18 +14,21 @@ const LanguageSelector = memo(() => {
     useTranslateContext();
   const { isOpen, setIsOpen, languages } = useLanguageSelectorContext();
 
-  const handleCloseClick = () => {
+  const handleCloseClick = useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
 
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setIsOpen(false);
-    if (languageType === LANGUAGE_TYPE.SOURCE) {
-      setSourceLanguage(e.target.value);
-      return;
-    }
-    setTargetLanguage(e.target.value);
-  };
+  const handleSelectChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      setIsOpen(false);
+      if (languageType === LANGUAGE_TYPE.SOURCE) {
+        setSourceLanguage(e.target.value);
+        return;
+      }
+      setTargetLanguage(e.target.value);
+    },
+    [languageType]
+  );
 
   return (
     <AnimatePresence>

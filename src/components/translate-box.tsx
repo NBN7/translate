@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect, memo } from "react";
+import { ChangeEvent, useState, useEffect, memo, useCallback } from "react";
 import { useTranslateContext } from "../context/translate-context";
 
 import { Textarea } from "@nextui-org/react";
@@ -18,25 +18,25 @@ export const TranslateBox = memo(() => {
     }
   }, [text]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setWordCounter(e.target.value.length);
     setText(e.target.value);
-  };
+  }, []);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     translateText(
       text ? text : "",
       targetLanguage,
       sourceLanguage,
       setTranslatedText
     );
-  };
+  }, [text]);
 
-  const handleReset = () => {
-    setText("");
-    setWordCounter(0);
+  const handleReset = useCallback(() => {
+    setText(null);
     setTranslatedText(null);
-  };
+    setWordCounter(0);
+  }, []);
 
   return (
     <>

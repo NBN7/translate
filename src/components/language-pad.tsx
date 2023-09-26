@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 import { useTranslateContext } from "../context/translate-context";
 import { useLanguageSelectorContext } from "../context/language-selector-context";
 
@@ -20,22 +22,23 @@ export const LanguagePad = () => {
 
   const { setIsOpen } = useLanguageSelectorContext();
 
-  const switchLanguages = () => {
+  const switchLanguages = useCallback(() => {
     setSourceLanguage(targetLanguage);
     setTargetLanguage(sourceLanguage);
 
     setText(translatedText);
     setTranslatedText(text);
-  };
+  }, [text, translatedText, targetLanguage, sourceLanguage]);
 
-  const handleSourceClick = () => {
+  const handleSourceClick = useCallback(() => {
     setIsOpen(true);
     setLanguageType(LANGUAGE_TYPE.SOURCE);
-  };
-  const handleTargetClick = () => {
+  }, []);
+
+  const handleTargetClick = useCallback(() => {
     setIsOpen(true);
     setLanguageType(LANGUAGE_TYPE.TARGET);
-  };
+  }, []);
 
   return (
     <section className="flex w-full items-center justify-around">
