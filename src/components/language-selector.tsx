@@ -1,4 +1,7 @@
 import { memo, useCallback } from "react";
+
+import { Select, SelectItem } from "@nextui-org/react";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useTranslateContext } from "../context/translate-context";
@@ -44,7 +47,7 @@ const LanguageSelector = memo(() => {
           }}
           className="absolute backdrop-blur-sm w-full md:w-[400px] h-screen flex items-center justify-center z-40 p-4"
         >
-          <div className="flex flex-col p-4 bg-black border-3 border-[#27272A] rounded-md w-[300px] h-[300px] z-50">
+          <div className="flex flex-col p-4 bg-black border-2 border-[#27272A] rounded-md w-[300px] h-[300px] z-50">
             <div className="flex w-full justify-end">
               <IoClose
                 className="cursor-pointer"
@@ -54,17 +57,13 @@ const LanguageSelector = memo(() => {
             </div>
 
             <div className="w-full h-full flex items-center">
-              <select
-                onChange={handleSelectChange}
-                className="bg-[#27272A] outline-none appearance-none w-full p-4 rounded-md"
-              >
-                <option defaultValue="">Select Language</option>
+              <Select label="Select language" onChange={handleSelectChange}>
                 {languages.map((language, index) => (
-                  <option key={index} value={language.language}>
+                  <SelectItem key={index} value={language.language}>
                     {language.language}
-                  </option>
+                  </SelectItem>
                 ))}
-              </select>
+              </Select>
             </div>
           </div>
         </motion.section>
