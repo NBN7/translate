@@ -7,6 +7,8 @@ import { LanguagePadBox } from "./language-pad-box";
 import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import { LANGUAGE_TYPE } from "../constants/languageType";
 
+import { iconStyle } from "../styles/iconStyle";
+
 export const LanguagePad = () => {
   const {
     sourceLanguage,
@@ -49,7 +51,7 @@ export const LanguagePad = () => {
 
       <div className="w-full p-4" onClick={switchLanguages}>
         <HiOutlineSwitchHorizontal
-          className="cursor-pointer w-full"
+          className={`${iconStyle} w-full`}
           size="20px"
         />
       </div>

@@ -6,6 +6,8 @@ import { IoClose } from "react-icons/io5";
 
 import { translateText } from "../utils/translateText";
 
+import { iconStyle } from "../styles/iconStyle";
+
 export const TranslateBox = memo(() => {
   const { sourceLanguage, targetLanguage, text, setText, setTranslatedText } =
     useTranslateContext();
@@ -53,11 +55,7 @@ export const TranslateBox = memo(() => {
             maxLength={5000}
             value={text ? text : ""}
           />
-          <IoClose
-            size="20px"
-            onClick={handleReset}
-            className="cursor-pointer"
-          />
+          <IoClose className={iconStyle} size="20px" onClick={handleReset} />
         </div>
 
         <div className="flex justify-end text-sm text-[#A1A1AA]">
