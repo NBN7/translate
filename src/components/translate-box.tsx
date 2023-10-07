@@ -40,7 +40,7 @@ export const TranslateBox = memo(() => {
 
   return (
     <>
-      <section className="p-4 bg-[#27272A] rounded-md">
+      <section className="p-4 bg-[#27272A] rounded-xl">
         <div className="flex gap-4 items-center">
           <Textarea
             autoCorrect="off"
