@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, useEffect, memo, useCallback } from "react";
 import { useTranslateContext } from "../context/translate-context";
 
-import { Textarea } from "@nextui-org/react";
+import { Textarea, Button } from "@nextui-org/react";
 import { IoClose } from "react-icons/io5";
 
 import { translateText } from "../utils/translateText";
@@ -66,12 +66,15 @@ export const TranslateBox = memo(() => {
       </section>
 
       <div className="flex w-full items-center justify-center mt-4">
-        <button
+        <Button
+          size="lg"
+          variant="light"
+          color="primary"
+          className="w-full"
           onClick={handleClick}
-          className="w-full p-4 bg-[#27272A] rounded-md hover:text-blue-600"
         >
-          translate
-        </button>
+          Translate
+        </Button>
       </div>
     </>
   );
